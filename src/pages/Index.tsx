@@ -47,36 +47,7 @@ const Index = () => {
     });
   };
 
-  const totalBalance = users.reduce((sum, user) => sum + user.balance, 0);
-
-  return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="border-b border-border/20 bg-background-secondary/30 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-blue flex items-center justify-center">
-                <Wallet className="w-6 h-6 text-background" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-foreground">My Money Manager</h1>
-                <p className="text-muted-foreground">Track expenses with friends and family</p>
-              </div>
-            </div>
-            
-            <div className="text-right">
-              <p className="text-sm text-muted-foreground">Total Balance</p>
-              <p className={`text-2xl font-bold ${
-                totalBalance > 0 ? 'text-neon-green' : 
-                totalBalance < 0 ? 'text-destructive' : 'text-muted-foreground'
-              }`}>
-                ₹{totalBalance.toLocaleString()}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+  //here
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-8">
