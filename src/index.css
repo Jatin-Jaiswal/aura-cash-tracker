@@ -2,39 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Money Manager Dark Cyberpunk Design System
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark Cyberpunk Theme */
+    --background: 220 13% 9%;
+    --background-secondary: 220 13% 12%;
+    --background-card: 220 13% 14%;
+    --foreground: 210 40% 98%;
+    
+    /* Neon Accents */
+    --neon-cyan: 180 100% 50%;
+    --neon-blue: 217 100% 60%;
+    --neon-purple: 270 100% 70%;
+    --neon-green: 150 100% 50%;
+    
+    /* Gradients */
+    --gradient-neon: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-blue)));
+    --gradient-card: linear-gradient(135deg, hsl(var(--background-card) / 0.8), hsl(var(--background-secondary) / 0.6));
+    --gradient-purple: linear-gradient(135deg, hsl(var(--neon-purple)), hsl(var(--neon-blue)));
+    
+    /* Shadows & Effects */
+    --shadow-neon-cyan: 0 0 20px hsl(var(--neon-cyan) / 0.3);
+    --shadow-neon-blue: 0 0 20px hsl(var(--neon-blue) / 0.3);
+    --shadow-neon-purple: 0 0 20px hsl(var(--neon-purple) / 0.3);
+    --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    
+    /* Glass Effects */
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-bg: rgba(255, 255, 255, 0.05);
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: var(--background-card);
+    --card-foreground: var(--foreground);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: var(--background-card);
+    --popover-foreground: var(--foreground);
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Updated Theme Colors */
+    --primary: var(--neon-cyan);
+    --primary-foreground: 220 13% 9%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: var(--background-card);
+    --secondary-foreground: var(--foreground);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: var(--background-secondary);
+    --muted-foreground: 210 20% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: var(--neon-blue);
+    --accent-foreground: var(--foreground);
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 20%;
+    --input: var(--background-card);
+    --ring: var(--neon-cyan);
 
     --radius: 0.5rem;
 
@@ -101,5 +126,48 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  /* Glass Card Effect */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-card);
+  }
+  
+  /* Neon Button Variants */
+  .btn-neon-cyan {
+    background: var(--gradient-neon);
+    box-shadow: var(--shadow-neon-cyan);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .btn-neon-cyan:hover {
+    box-shadow: 0 0 30px hsl(var(--neon-cyan) / 0.5);
+    transform: translateY(-2px);
+  }
+  
+  /* Smooth Transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Balance Animations */
+  .balance-positive {
+    color: hsl(var(--neon-green));
+    text-shadow: 0 0 10px hsl(var(--neon-green) / 0.5);
+  }
+  
+  .balance-negative {
+    color: hsl(var(--destructive));
+    text-shadow: 0 0 10px hsl(var(--destructive) / 0.5);
+  }
+  
+  .balance-zero {
+    color: hsl(var(--muted-foreground));
   }
 }
