@@ -6,7 +6,7 @@ import { UserCard } from '@/components/UserCard';
 import { AddUserModal } from '@/components/AddUserModal';
 import { toast } from '@/hooks/use-toast';
 
-const MAX_USERS = 8;
+
 
 const Index = () => {
   const { users, addUser, deleteUser, addTransaction } = useUserManager();
@@ -103,11 +103,10 @@ const Index = () => {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold text-foreground">
-                Users ({users.length}/{MAX_USERS})
+                Users ({users.length})
               </h2>
               <Button
                 onClick={() => setShowAddUserModal(true)}
-                disabled={users.length >= MAX_USERS}
                 className="btn-neon-cyan border-0 text-background font-semibold"
               >
                 <UserPlus className="w-4 h-4 mr-2" />
@@ -136,8 +135,6 @@ const Index = () => {
         isOpen={showAddUserModal}
         onClose={() => setShowAddUserModal(false)}
         onConfirm={handleAddUser}
-        currentUserCount={users.length}
-        maxUsers={MAX_USERS}
       />
     </div>
   );

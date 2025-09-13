@@ -16,23 +16,19 @@ interface AddUserModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: (name: string) => void;
-  currentUserCount: number;
-  maxUsers: number;
 }
 
 export const AddUserModal = ({
   isOpen,
   onClose,
   onConfirm,
-  currentUserCount,
-  maxUsers,
 }: AddUserModalProps) => {
   const [name, setName] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (name.trim() && currentUserCount < maxUsers) {
+    if (name.trim()) {
       onConfirm(name.trim());
       handleClose();
     }
@@ -44,7 +40,6 @@ export const AddUserModal = ({
   };
 
   const isValid = name.trim().length > 0;
-  const canAddUser = currentUserCount < maxUsers;
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
@@ -55,60 +50,44 @@ export const AddUserModal = ({
             Add New User
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
-            {canAddUser 
-              ? `Add a new user to your money manager (${currentUserCount}/${maxUsers})`
-              : `Maximum users reached (${maxUsers}/${maxUsers})`
-            }
+            Add a new user to your money manager
           </DialogDescription>
         </DialogHeader>
 
-        {canAddUser ? (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="userName" className="text-foreground">
-                User Name
-              </Label>
-              <Input
-                id="userName"
-                placeholder="Enter user name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="bg-input border-border/30 focus:border-neon-cyan focus:ring-neon-cyan/20"
-                required
-                autoFocus
-              />
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="userName" className="text-foreground">
+              User Name
+            </Label>
+            <Input
+              id="userName"
+              placeholder="Enter user name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="bg-input border-border/30 focus:border-neon-cyan focus:ring-neon-cyan/20"
+              required
+              autoFocus
+            />
+          </div>
 
-            <DialogFooter className="gap-2">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={handleClose}
-                className="border-border/30 hover:border-border"
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                disabled={!isValid}
-                className="btn-neon-cyan border-0 text-background font-semibold"
-              >
-                Add User
-              </Button>
-            </DialogFooter>
-          </form>
-        ) : (
-          <DialogFooter>
+          <DialogFooter className="gap-2">
             <Button
               type="button"
               variant="outline"
               onClick={handleClose}
               className="border-border/30 hover:border-border"
             >
-              Close
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              disabled={!isValid}
+              className="btn-neon-cyan border-0 text-background font-semibold"
+            >
+              Add User
             </Button>
           </DialogFooter>
-        )}
+        </form>
       </DialogContent>
     </Dialog>
   );
