@@ -103,7 +103,7 @@ const Index = () => {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold text-foreground">
-                Users ({users.length})
+                Users
               </h2>
               <Button
                 onClick={() => setShowAddUserModal(true)}
